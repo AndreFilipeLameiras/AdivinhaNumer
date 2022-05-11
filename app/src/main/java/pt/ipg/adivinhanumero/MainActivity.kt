@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import kotlin.random.Random
 
 
@@ -26,11 +27,22 @@ class MainActivity : AppCompatActivity() {
         val ediTextNumber = findViewById<EditText>(R.id.editTextNumber)
         val numero = ediTextNumber.text.toString().toIntOrNull()
 
-        if(!(numero in NUMERO_ADIVINHAR_MINIMO..NUMERO_ADIVINHAR_MAXIMO)){
-            ediTextNumber.error = "Deve indicar um numero entre 1 a 10"
+        if(numero !in NUMERO_ADIVINHAR_MINIMO..NUMERO_ADIVINHAR_MAXIMO){
+            ediTextNumber.error = getString(R.string.numero_invalido)
             ediTextNumber.requestFocus()
             return
         }
+
+
+        val mensagem = when{
+            numero!! < numeroAdivinhar -> getString(R.string.numero_maior)
+            numero!! > numeroAdivinhar -> getString(R.string.numero_menor)
+            else -> getString(R.string.Acertou)
+
+        }
+        findViewById<TextView>(R.id.textViewMensagem).text = mensagem
+
+
     }
 
 
