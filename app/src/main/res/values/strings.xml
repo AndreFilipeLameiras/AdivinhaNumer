@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">AdivinhaNumero</string>
     <string name="adivinha">Adivinha</string>
-    <string name="parab_ns_acertou">Parabéns, acertou</string>
-    <string name="tentativas_0">Tentativas: 0</string>
-    <string name="jogos_0">Jogos: 0</string>
     <string name="numero_invalido">Deve indicar um numero entre 1 a 10</string>
     <string name="numero_maior">O numero que estou a pensar é maior</string>
     <string name="numero_menor">O numero que estou a pensar é menor</string>
     <string name="Acertou">Parabéns acertou</string>
+    <string name="Tentativas">Tentativas</string>
+    <string name="Jogo">Jogo</string>
 </resources>

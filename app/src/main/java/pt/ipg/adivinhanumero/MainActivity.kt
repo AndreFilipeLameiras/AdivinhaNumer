@@ -10,7 +10,13 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    private var numeroAdivinhar: Int = 0
+    private var numeroAdivinhar = 0
+    private var tentativas = 0
+    private var jogos = 1
+
+    private var textViewTentativas : TextView? = null
+    private var textViewJogos: TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +27,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.buttonAdivinhar).setOnClickListener {
             adivinha()
         }
+
+        textViewTentativas = findViewById<TextView>(R.id.textViewTentativas)
+        textViewJogos = findViewById<TextView>(R.id.textViewJogos)
+        mostraTentativas()
+        mostraJogo()
     }
+
+
 
     private fun adivinha() {
         val ediTextNumber = findViewById<EditText>(R.id.editTextNumber)
@@ -42,7 +55,16 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<TextView>(R.id.textViewMensagem).text = mensagem
 
+        tentativas++
+        mostraTentativas()
+    }
 
+    private fun mostraTentativas() {
+        textViewTentativas!!.text = getString(R.string.Tentativas) + ": $tentativas"
+    }
+
+    private fun mostraJogo() {
+        textViewJogos!!.text = getString(R.string.Jogo)+ "$jogos"
     }
 
 
