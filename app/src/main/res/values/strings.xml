@@ -7,4 +7,6 @@
     <string name="Acertou">Parabéns acertou</string>
     <string name="Tentativas">Tentativas</string>
     <string name="Jogo">Jogo</string>
+    <string name="jogar_novamente">Quer jogar novamente?</string>
+    <string name="mensagem_novo_jogo">Escolha sim para jogar novamente e nao para sair do jogo</string>
 </resources>

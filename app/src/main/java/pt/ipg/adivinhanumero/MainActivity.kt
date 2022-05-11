@@ -1,10 +1,12 @@
 package pt.ipg.adivinhanumero
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import kotlin.random.Random
 
 
@@ -30,8 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         textViewTentativas = findViewById<TextView>(R.id.textViewTentativas)
         textViewJogos = findViewById<TextView>(R.id.textViewJogos)
-        mostraTentativas()
-        mostraJogo()
+
+        novoJogo()
     }
 
 
@@ -57,6 +59,28 @@ class MainActivity : AppCompatActivity() {
 
         tentativas++
         mostraTentativas()
+
+
+        if(numero == numeroAdivinhar){
+            val dialogoAlerta = AlertDialog.Builder(this)
+            dialogoAlerta.setTitle(R.string.jogar_novamente)
+            dialogoAlerta.setCancelable(false)
+            dialogoAlerta.setMessage(getString(R.string.mensagem_novo_jogo))
+            dialogoAlerta.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which -> novoJogo() })
+            dialogoAlerta.setNegativeButton(android.R.string.cancel , DialogInterface.OnClickListener { dialog, which -> finish() } )
+            dialogoAlerta.show()
+        }
+    }
+
+    private fun novoJogo() {
+        numeroAdivinhar = Random.nextInt(NUMERO_ADIVINHAR_MINIMO, NUMERO_ADIVINHAR_MAXIMO + 1)
+        tentativas = 0
+        jogos++
+
+        mostraTentativas()
+        mostraJogo()
+        findViewById<TextView>(R.id.textViewMensagem).text = ""
+
     }
 
     private fun mostraTentativas() {
@@ -64,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mostraJogo() {
-        textViewJogos!!.text = getString(R.string.Jogo)+ "$jogos"
+        textViewJogos!!.text = getString(R.string.Jogo) + ":  $jogos"
     }
 
 
