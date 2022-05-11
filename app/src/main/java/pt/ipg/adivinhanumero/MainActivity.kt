@@ -3,7 +3,7 @@ package pt.ipg.adivinhanumero
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import java.util.*
+import android.widget.EditText
 import kotlin.random.Random
 
 
@@ -23,7 +23,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun adivinha() {
-        
+        val ediTextNumber = findViewById<EditText>(R.id.editTextNumber)
+        val numero = ediTextNumber.text.toString().toIntOrNull()
+
+        if(!(numero in NUMERO_ADIVINHAR_MINIMO..NUMERO_ADIVINHAR_MAXIMO)){
+            ediTextNumber.error = "Deve indicar um numero entre 1 a 10"
+            ediTextNumber.requestFocus()
+            return
+        }
     }
 
 
